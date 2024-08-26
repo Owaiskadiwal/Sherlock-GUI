@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Sherlock Results</title>
+</head>
+<body>
+    <div class="loader-wrapper" id="loader">
+        <div class="loader"></div>
+        <p>Processing your request, please wait...</p>
+    </div>
+
+    <div class="container" id="resultContainer" style="display: none;"> 
+        <h1>Sherlock User Search Tool - Results</h1>
+        
+        {% if output %}
+        <h2>Output</h2>
+        <pre>{{ output }}</pre>
+        {% endif %}
+        
+        {% if error %}
+        <h2>Error</h2>
+        <pre>{{ error }}</pre>
+        {% endif %}
+        
+    </div>
+
+    <script>
+        // Show the result container and hide the loader once the page has fully loaded
+        window.onload = function() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("resultContainer").style.display = "block";
+        };
+    </script>
+</body>
+<style>
+    h1 {
+        text-align: center;
+        margin-top: 30px;
+    }
+    body {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        background-color: #0c0c0c;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding-top: 20px;
+        position: relative;
+        /* Create a pseudo-element for the background image */
+    }
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* background-image: url('https://myloview.com/fotolia.php?id=118906354&efektOpt=76&akcja=-1&pion=0&poziom=0&obrot=0&rozmiar=700');
+        background-image: url('https://wallpapercave.com/wp/wp10215526.png'); */
+        background-image: url('https://www.tripwire.com/sites/default/files/OSINT-Using-Threat-Intelligence-to-Secure-Your-Organisation.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: 0.9; /* Adjust this value to lighten or darken the image */
+        z-index: -1;
+    }
+    .container {
+        background-color: hsla(0, 0%, 100%, 0.815);
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        margin-top: 100px;
+    }
+    .container:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 2 2px 4px rgba(250, 246, 246, 0.466);
+    }
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    pre {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 4px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    i {
+        font-size: 16px;
+    }
+    /* Loader styles */
+    .loader-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 1000;
+    }
+    .loader {
+        border: 6px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 6px solid #007BFF;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .loader-wrapper p {
+        margin-top: 10px;
+        font-size: 18px;
+        color: #333;
+    }
+</style>
+</html>
+

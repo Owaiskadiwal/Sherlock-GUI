@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Sherlock Web Interface</title>
+</head>
+<body>
+    <div class="loader-wrapper" id="loader" style="display: none;">
+        <div class="loader"></div>
+        <p>Processing your request, please wait...</p>
+    </div>
+
+    <div class="container" id="formContainer"> 
+        <h1>Sherlock User Search Tool</h1>
+        <form id="sherlockForm" method="POST" action="/run" target="_blank">
+            <label for="usernames">Enter the username(s) to search:</label>
+            <input type="text" id="usernames" name="usernames" required placeholder="Enter Username">
+            
+            <div>
+                <input type="checkbox" id="verbose" name="verbose">
+                <label for="verbose">Enable verbose/debug mode</label>
+            </div>
+            
+            <div>
+                <input type="checkbox" id="csv" name="csv">
+                <label for="csv">Save output as a CSV file</label>
+            </div>
+               
+            <div>
+                <input type="checkbox" id="xlsx" name="xlsx">
+                <label for="xlsx">Save output as an Excel file</label>
+            </div>
+            
+            <div>
+                <input type="checkbox" id="output" name="output">
+                <label for="output">Save the output to a text file:</label>
+                <input type="text" id="filename" name="filename" placeholder="Enter filename">
+            </div>
+            
+            <div>
+                <input type="checkbox" id="timeout" name="timeout">
+                <label for="timeout">Set a custom timeout (sec):</label>
+                <input type="text" id="timeout_value" name="timeout_value" placeholder="Enter timeout">
+            </div>
+            
+            <div>
+                <input type="checkbox" id="print_all" name="print_all">
+                <label for="print_all">Print all sites where the username was not found:</label>
+            </div>
+            
+            <div>
+                <input type="checkbox" id="browse" name="browse">
+                <label for="browse">Browse all results in the default browser:</label>
+            </div>
+            
+            <button type="submit" ><i class="fas fa-play"></i> Run Sherlock</button>
+        </form>
+    </div>
+
+    
+</body>
+<style>
+    h1{
+        text-align: center;
+        margin-top: 30px;
+    }
+    body {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        background-color: #0c0c0c;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding-top: 20px;
+        position: relative;
+        /* Create a pseudo-element for the background image */
+    }
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* background-image: url('https://myloview.com/fotolia.php?id=118906354&efektOpt=76&akcja=-1&pion=0&poziom=0&obrot=0&rozmiar=700');
+        background-image: url('https://wallpapercave.com/wp/wp10215526.png'); */
+        background-image: url('https://www.tripwire.com/sites/default/files/OSINT-Using-Threat-Intelligence-to-Secure-Your-Organisation.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: 0.9; /* Adjust this value to lighten or darken the image */
+        z-index: -1;
+    }
+    .container{
+        background-color: #ffffffb4;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        margin-top: 100px;
+    }
+    .container:hover{
+        background-color: rgba(255, 255, 255, 0.801);
+        box-shadow:  1px 2px 33px rgba(158, 155, 155, 0.705);
+    }
+    pre {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 4px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    input[type="text"] {
+        width: auto;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #030303;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    /* Loader styles */
+    .loader-wrapper {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 1000;
+    }
+    .loader {
+        border: 6px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 6px solid #007BFF;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .loader-wrapper p {
+        margin-top: 10px;
+        font-size: 18px;
+        color: #333;
+    }
+</style>
+</html>

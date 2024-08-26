@@ -1,0 +1,2 @@
+# uninstallcomponents.txt
+sudo apt remove sherlock

@@ -1,0 +1,2 @@
+# uninstallrequirements.txt
+pip uninstall -r requirements.txt
